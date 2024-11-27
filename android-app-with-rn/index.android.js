@@ -28,9 +28,9 @@ const RNApp = () => {
      * is to empty the buffer of RUM events.
      */
     DatadogProvider.initialize({
-      clientToken: "fake_value",
-      env: "fake_value",
-      applicationId: "fake_value",
+      clientToken: "pub2277a2906c90bb5433036c6abb10642f",
+      env: "test",
+      applicationId: "b9e1e5ed-e9f5-4cf9-a2fc-8e50b95a1454",
       longTaskThresholdMs: 100,
       verbosity: SdkVerbosity.DEBUG,
     });
