@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextInput, View, Text, Button } from "react-native";
 import {
   blockJavascriptThread,
@@ -6,9 +6,12 @@ import {
 } from "react-native-performance-limiter";
 
 export const CompletionDetails = ({ navigation }) => {
+  const [apiResponse, setApiRespnose] = useState('');
+
   return (
     <View>
       <Text>Tell us more about your day</Text>
+      {apiResponse && <Text>api response: {JSON.stringify(apiResponse)}</Text>}
       <TextInput
         style={{
           borderColor: "black",
@@ -34,6 +37,14 @@ export const CompletionDetails = ({ navigation }) => {
           blockNativeMainThread(1000);
         }}
         title="Native long task"
+      />
+      <Button
+        onPress={async () => {
+          const response = await fetch('http://httpbin.org/get?param=react-native-test');
+          const json = await response.json();
+          setApiRespnose(json)
+        }}
+        title="Make HTTP request"
       />
     </View>
   );
