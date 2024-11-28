@@ -28,6 +28,12 @@ export const CompletionDetails = ({navigation}) => {
       />
       <Button
         onPress={() => {
+          navigation.navigate('WebviewScreen');
+        }}
+        title="Go to webview screen"
+      />
+      <Button
+        onPress={() => {
           blockJavascriptThread(1000);
         }}
         title="JS long task"
