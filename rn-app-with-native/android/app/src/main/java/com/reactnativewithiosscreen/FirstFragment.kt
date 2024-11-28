@@ -38,7 +38,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
     private fun onButtonPress() {
         val request = Request.Builder()
-            .url("https://publicobject.com/helloworld.txt")
+            .url("http://httpbin.org/get?params-kotlin-test")
             .build()
 
         Thread {
