@@ -11,6 +11,7 @@ import {
 } from '@datadog/mobile-react-native';
 import {DdRumReactNavigationTracking} from '@datadog/mobile-react-navigation';
 import {applicationId, clientToken, environment} from './credentials.json';
+import { WebviewScreen } from './src/WebviewScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,10 @@ const RNApp = () => {
           <Stack.Screen
             name="ConfirmationScreen"
             component={ConfirmationScreen}
+          />
+          <Stack.Screen
+            name="WebviewScreen"
+            component={WebviewScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>
