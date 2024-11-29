@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@datadog/mobile-react-native": "^2.4.4",
+    "@datadog/mobile-react-native-webview": "^2.4.4",
     "@datadog/mobile-react-navigation": "^2.4.4",
     "@react-navigation/native": "^6.1.4",
     "@react-navigation/native-stack": "^6.9.10",

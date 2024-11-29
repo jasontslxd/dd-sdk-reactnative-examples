@@ -3,7 +3,7 @@ package com.reactnativewithiosscreen
 import android.content.Intent
 import com.facebook.react.bridge.*
 import com.facebook.react.modules.core.DeviceEventManagerModule
-import com.datadog.android.DatadogInterceptor
+import com.datadog.android.okhttp.DatadogInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException

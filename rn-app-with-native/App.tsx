@@ -7,6 +7,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   DatadogProvider,
   InternalLog,
+  PropagatorType,
   SdkVerbosity,
 } from '@datadog/mobile-react-native';
 import {DdRumReactNavigationTracking} from '@datadog/mobile-react-navigation';
@@ -19,6 +20,13 @@ const config = {
   trackResources: true,
   trackErrors: true,
   trackInteractions: true,
+  firstPartyHosts: [{
+    match: "httpbin.org",
+    propagatorTypes: [
+        PropagatorType.TRACECONTEXT,
+        PropagatorType.DATADOG
+    ]
+  }]
 };
 InternalLog.verbosity = SdkVerbosity.DEBUG;
 
