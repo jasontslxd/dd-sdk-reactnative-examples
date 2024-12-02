@@ -6,6 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   DatadogProvider,
+  DdSdkReactNative,
   InternalLog,
   PropagatorType,
   SdkVerbosity,
@@ -21,7 +22,7 @@ const config = {
   trackErrors: true,
   trackInteractions: true,
   firstPartyHosts: [{
-    match: "httpbin.org",
+    match: "172.26.32.1",
     propagatorTypes: [
         PropagatorType.TRACECONTEXT,
         PropagatorType.DATADOG
@@ -37,8 +38,15 @@ const RNApp = () => {
       env: environment,
       applicationId,
       longTaskThresholdMs: 100,
-      nativeInteractionTracking: true,
+      nativeInteractionTracking: true
     });
+
+    DdSdkReactNative.setUser({
+      id: '123',
+      name: 'Test user',
+      email: 'test@test.com',
+      type: 'premium'
+  });
   }, []);
   const navigationRef = useRef(null);
 
