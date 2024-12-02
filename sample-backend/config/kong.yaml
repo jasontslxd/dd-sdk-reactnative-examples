@@ -1,0 +1,54 @@
+_format_version: "3.0"
+plugins:
+- config:
+    batch_flush_delay: null
+    batch_span_count: null
+    connect_timeout: 1000
+    endpoint: http://otel-collector:4318/v1/traces
+    header_type: preserve
+    headers: {}
+    http_response_header_for_traceid: null
+    queue:
+      initial_retry_delay: 0.01
+      max_batch_size: 1
+      max_bytes: null
+      max_coalescing_delay: 1
+      max_entries: 10000
+      max_retry_delay: 60
+      max_retry_time: 60
+    read_timeout: 5000
+    resource_attributes: {}
+    send_timeout: 5000
+  enabled: true
+  instance_name: otel
+  name: opentelemetry
+  protocols:
+  - grpc
+  - grpcs
+  - http
+  - https
+services:
+- connect_timeout: 60000
+  enabled: true
+  host: python-app
+  name: test-service
+  path: /test
+  port: 4000
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  routes:
+  - https_redirect_status_code: 426
+    name: test-route
+    path_handling: v0
+    paths:
+    - /route
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    request_buffering: true
+    response_buffering: true
+    strip_path: true
+  write_timeout: 60000

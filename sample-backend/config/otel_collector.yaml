@@ -1,0 +1,61 @@
+extensions:
+  health_check:
+  pprof:
+    endpoint: 0.0.0.0:1777
+  zpages:
+    endpoint: 0.0.0.0:55679
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+  hostmetrics:
+    collection_interval: 10s
+    scrapers:
+      paging:
+        metrics:
+          system.paging.utilization:
+            enabled: true
+      cpu:
+        metrics:
+          system.cpu.utilization:
+            enabled: true
+      disk:
+      filesystem:
+        metrics:
+          system.filesystem.utilization:
+            enabled: true
+      load:
+      memory:
+      network:
+      processes:
+
+processors:
+  batch:
+    send_batch_max_size: 100
+    send_batch_size: 10
+    timeout: 10s
+
+connectors:
+  datadog/connector:
+
+exporters:
+  debug:
+  datadog/exporter:
+    api:
+      site: datadoghq.com
+      key: ${env:DATADOG_API_KEY}
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [datadog/connector, datadog/exporter, debug]
+    metrics:
+      receivers: [datadog/connector, otlp]
+      exporters: [datadog/exporter, debug]
+
+  extensions: [health_check, pprof, zpages]

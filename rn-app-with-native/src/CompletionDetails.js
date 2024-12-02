@@ -6,12 +6,14 @@ import {
 } from 'react-native-performance-limiter';
 
 export const CompletionDetails = ({navigation}) => {
-  const [apiResponse, setApiRespnose] = useState('');
+  const [apiResponse, setApiResponse] = useState('');
+  const [headers, setHeaders] = useState({});
 
   return (
     <View>
       <Text>Tell us more about your day</Text>
       {apiResponse && <Text>api response: {JSON.stringify(apiResponse)}</Text>}
+      {headers && <Text>headers: {JSON.stringify(headers)}</Text>}
       <TextInput
         style={{
           borderColor: 'black',
@@ -47,9 +49,15 @@ export const CompletionDetails = ({navigation}) => {
 
       <Button
         onPress={async () => {
-          const response = await fetch('http://httpbin.org/get?param=react-native-test');
-          const json = await response.json();
-          setApiRespnose(json);
+          try {
+            const response = await fetch('http://172.26.32.1:8000/route?sides=6&rolls=3');
+            const json = await response.json();
+            setApiResponse(json);
+            setHeaders(response.headers);
+          }
+          catch (e) {
+            console.error(e)
+          }
         }}
         title="Make HTTP request"
       />
