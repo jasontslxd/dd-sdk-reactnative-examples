@@ -26,7 +26,7 @@ class CustomViewModule(reactContext: ReactApplicationContext) : ReactContextBase
             .build()
  
         val request = Request.Builder()
-            .url("https://httpbin.org/get?params=native-api-call-from-react-native")
+            .url("http://172.26.32.1:8000/route?sides=10&rolls=1")
             .build()
  
         Thread {
