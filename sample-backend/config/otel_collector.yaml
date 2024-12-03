@@ -53,9 +53,11 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
+      processors: [batch]
       exporters: [datadog/connector, datadog/exporter, debug]
     metrics:
       receivers: [datadog/connector, otlp]
+      processors: [batch]
       exporters: [datadog/exporter, debug]
 
   extensions: [health_check, pprof, zpages]
