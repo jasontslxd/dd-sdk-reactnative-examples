@@ -54,6 +54,7 @@ export const CompletionDetails = ({navigation}) => {
             const json = await response.json();
             setApiResponse(json);
             setHeaders(response.headers);
+            console.log(`server responded with headers: ${JSON.stringify(response.headers)}`)
           }
           catch (e) {
             console.error(e)

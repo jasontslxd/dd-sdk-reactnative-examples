@@ -8,6 +8,7 @@ tracer = trace.get_tracer(__name__)
 
 @app.route("/test")
 def roll():
+        print(f"server received headers: {request.headers}")
         sides = int(request.args.get('sides'))
         rolls = int(request.args.get('rolls'))
         response = Response(roll_sum(sides,rolls))
