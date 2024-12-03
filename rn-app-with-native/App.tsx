@@ -27,7 +27,8 @@ const config = {
         PropagatorType.TRACECONTEXT,
         PropagatorType.DATADOG
     ]
-  }]
+  }],
+  resourceTracingSamplingRate: 100
 };
 InternalLog.verbosity = SdkVerbosity.DEBUG;
 
