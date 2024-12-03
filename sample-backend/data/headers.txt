@@ -1,0 +1,26 @@
+python request headers
+2024-12-03 17:51:52 server received headers: Host: python-app:4000
+2024-12-03 17:51:52 Connection: keep-alive
+2024-12-03 17:51:52 X-Forwarded-For: 172.19.0.1
+2024-12-03 17:51:52 X-Forwarded-Proto: http
+2024-12-03 17:51:52 X-Forwarded-Host: 172.26.32.1
+2024-12-03 17:51:52 X-Forwarded-Port: 8000
+2024-12-03 17:51:52 X-Forwarded-Path: /route
+2024-12-03 17:51:52 X-Forwarded-Prefix: /route
+2024-12-03 17:51:52 X-Real-Ip: 172.19.0.1
+2024-12-03 17:51:52 X-Kong-Request-Id: 5b911239dad1ab174f185e604e47b95d
+2024-12-03 17:51:52 X-Datadog-Origin: rum
+2024-12-03 17:51:52 X-Datadog-Sampling-Priority: 1
+2024-12-03 17:51:52 X-Datadog-Trace-Id: 8458383467842153907
+2024-12-03 17:51:52 X-Datadog-Parent-Id: 6017131659777519425
+2024-12-03 17:51:52 X-Datadog-Tags: _dd.p.tid=674ed4b200000000
+2024-12-03 17:51:52 Traceparent: 00-674ed4b200000000756236f316c4adb3-70dd9fd93891df1a-01
+2024-12-03 17:51:52 Tracestate: dd=s:1;o:rum;p:5381255d4bcbaf41
+2024-12-03 17:51:52 Accept-Encoding: gzip
+2024-12-03 17:51:52 User-Agent: okhttp/4.12.0
+2024-12-03 17:51:52 If-Modified-Since: Tue, 03 Dec 2024 09:51:51 GMT
+
+
+
+react native reecived headers
+LOG  server responded with headers: {"map":{"connection":"keep-alive","content-length":"1","content-type":"text/html; charset=utf-8","date":"Tue, 03 Dec 2024 09:51:51 GMT","server":"Werkzeug/3.1.3 Python/3.11.10","via":"kong/3.4.3.13-enterprise-edition","x-kong-proxy-latency":"4","x-kong-request-id":"5b911239dad1ab174f185e604e47b95d","x-kong-upstream-latency":"7"}}
