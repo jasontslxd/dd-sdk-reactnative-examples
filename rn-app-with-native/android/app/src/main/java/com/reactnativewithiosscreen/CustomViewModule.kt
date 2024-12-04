@@ -4,6 +4,8 @@ import android.content.Intent
 import com.facebook.react.bridge.*
 import com.facebook.react.modules.core.DeviceEventManagerModule
 import com.datadog.android.okhttp.DatadogInterceptor
+import com.datadog.android.okhttp.trace.TracingInterceptor
+import com.datadog.android.core.sampling.RateBasedSampler
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
@@ -21,8 +23,19 @@ class CustomViewModule(reactContext: ReactApplicationContext) : ReactContextBase
 
     @ReactMethod
     fun callApiFromNative(promise: Promise) {
+        val tracedHosts = listOf("172.26.32.1:8000")
+
         val client = OkHttpClient.Builder()
-            .addInterceptor(DatadogInterceptor())
+            .addInterceptor(
+                DatadogInterceptor.Builder(tracedHosts)
+                    .setTraceSampler(RateBasedSampler(sampleRate = 100f))
+                    .build()
+            )
+            .addNetworkInterceptor(
+                TracingInterceptor.Builder(tracedHosts)
+                    .setTraceSampler(RateBasedSampler(sampleRate = 100f))
+                    .build()
+            )
             .build()
  
         val request = Request.Builder()
