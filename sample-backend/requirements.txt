@@ -2,3 +2,4 @@ flask
 opentelemetry-distro
 opentelemetry-exporter-otlp
 python-dotenv
+flask_cors

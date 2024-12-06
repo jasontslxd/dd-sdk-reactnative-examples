@@ -1,12 +1,14 @@
 from opentelemetry import trace
-from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
 from random import randint
 from flask import Flask, request, Response
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 tracer = trace.get_tracer(__name__)
+CORS(app)
 
 @app.route("/test")
+@cross_origin(origins="*", methods=["GET"])
 def roll():
         print(f"server received headers: {request.headers}")
         sides = int(request.args.get('sides'))
