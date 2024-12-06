@@ -6,8 +6,9 @@ function App() {
   const [apiResponse, setApiRespnose] = useState('');
 
   const onButtonCLick = async () => {
-    const response = await fetch('http://httpbin.org/get?param=webview-test');
+    const response = await fetch('http://172.26.32.1:8000/route?sides=5&rolls=10');
     const json = await response.json();
+    console.log(json)
     setApiRespnose(json);
   }
 
