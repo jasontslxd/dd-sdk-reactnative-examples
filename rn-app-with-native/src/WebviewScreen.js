@@ -45,8 +45,8 @@ export const WebviewScreen = () => {
 
     return (
         <WebView 
-            source={{ uri: 'http://192.168.56.1:3000' }} 
-            allowedHosts={['192.168.56.1']}
+            source={{ uri: 'http://10.0.50.56:3000' }} 
+            allowedHosts={['10.0.50.56']}
             injectedJavaScriptBeforeContentLoaded={injectedJS}
         />
     )
