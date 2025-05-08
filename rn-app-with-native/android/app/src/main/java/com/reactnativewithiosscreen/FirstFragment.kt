@@ -14,8 +14,8 @@ import java.io.IOException
 
 class FirstFragment : Fragment(R.layout.fragment_first) {
     private val tracedHostsWithHeaderType = mapOf(
-        "example.com" to setOf(TracingHeaderType.DATADOG, TracingHeaderType.TRACECONTEXT),
-        "example.eu" to setOf(TracingHeaderType.DATADOG, TracingHeaderType.TRACECONTEXT)
+        "example.com" to setOf(TracingHeaderType.DATADOG),
+        "example.eu" to setOf(TracingHeaderType.DATADOG)
     )
 
     private val client = OkHttpClient.Builder()
@@ -26,9 +26,14 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         super.onViewCreated(view, savedInstanceState)
 
         val firstButton: Button = view.findViewById(R.id.button_first)
+        val errorButton: Button = view.findViewById(R.id.button_error)
 
         firstButton.setOnClickListener {
             this.onButtonPress()
+        }
+
+        errorButton.setOnClickListener {
+            throw RuntimeException("This is a test error from the error button!")
         }
     }
 

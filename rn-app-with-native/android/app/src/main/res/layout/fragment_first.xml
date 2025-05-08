@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:gravity="center_vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
     <Button
         android:layout_margin="10dp"
@@ -11,4 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Call api and go to next Android screen" />
+
+    <Button
+        android:layout_margin="10dp"
+        android:id="@+id/button_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Throw Error" />
 </LinearLayout>

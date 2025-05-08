@@ -39,7 +39,8 @@ const RNApp = () => {
       env: environment,
       applicationId,
       longTaskThresholdMs: 100,
-      nativeInteractionTracking: true
+      nativeInteractionTracking: true,
+      nativeCrashReportEnabled: true
     });
 
     DdSdkReactNative.setUser({
