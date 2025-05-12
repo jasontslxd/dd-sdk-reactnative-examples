@@ -5,9 +5,8 @@ import {ConfirmationScreen} from './src/ConfirmationScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
-  DatadogProvider,
   DdSdkReactNative,
-  InternalLog,
+  DdSdkReactNativeConfiguration,
   PropagatorType,
   SdkVerbosity,
 } from '@datadog/mobile-react-native';
@@ -17,66 +16,69 @@ import { WebviewScreen } from './src/WebviewScreen';
 
 const Stack = createNativeStackNavigator();
 
-const config = {
-  trackResources: true,
-  trackErrors: true,
-  trackInteractions: true,
-  firstPartyHosts: [{
-    match: "172.26.32.1",
-    propagatorTypes: [
-        PropagatorType.TRACECONTEXT,
-        PropagatorType.DATADOG
-    ]
-  }],
-  resourceTracingSamplingRate: 100
-};
-InternalLog.verbosity = SdkVerbosity.DEBUG;
+const datadogConfiguration = new DdSdkReactNativeConfiguration(
+  clientToken,
+  environment,
+  applicationId,
+  true,
+  true,
+  true
+);
+
+datadogConfiguration.site = "US1"
+datadogConfiguration.nativeCrashReportEnabled = true
+datadogConfiguration.sessionSamplingRate = 100
+datadogConfiguration.resourceTracingSamplingRate = 100
+datadogConfiguration.firstPartyHosts = [{
+  match: "172.26.32.1",
+  propagatorTypes: [
+    PropagatorType.TRACECONTEXT,
+    PropagatorType.DATADOG
+  ]
+}]
+datadogConfiguration.serviceName = "rn-app-with-native"
+datadogConfiguration.verbosity = SdkVerbosity.DEBUG
 
 const RNApp = () => {
   useEffect(() => {
-    DatadogProvider.initialize({
-      clientToken,
-      env: environment,
-      applicationId,
-      longTaskThresholdMs: 100,
-      nativeInteractionTracking: true,
-      nativeCrashReportEnabled: true
-    });
+    const initializeDatadog = async () => {
+      await DdSdkReactNative.initialize(datadogConfiguration);
+      DdSdkReactNative.setUser({
+        id: '123',
+        name: 'Test user',
+        email: 'test@test.com',
+        type: 'premium'
+      });
+    };
 
-    DdSdkReactNative.setUser({
-      id: '123',
-      name: 'Test user',
-      email: 'test@test.com',
-      type: 'premium'
-  });
+    initializeDatadog();
   }, []);
+
   const navigationRef = useRef(null);
 
   return (
-    <DatadogProvider configuration={config}>
-      <NavigationContainer
-        ref={navigationRef}
-        onReady={() => {
-          DdRumReactNavigationTracking.startTrackingViews(
-            navigationRef.current,
-          );
-        }}>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="CompletionDetails"
-            component={CompletionDetails}
-          />
-          <Stack.Screen
-            name="ConfirmationScreen"
-            component={ConfirmationScreen}
-          />
-          <Stack.Screen
-            name="WebviewScreen"
-            component={WebviewScreen}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </DatadogProvider>
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={() => {
+        DdRumReactNavigationTracking.startTrackingViews(
+          navigationRef.current,
+        );
+      }}>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="CompletionDetails"
+          component={CompletionDetails}
+        />
+        <Stack.Screen
+          name="ConfirmationScreen"
+          component={ConfirmationScreen}
+        />
+        <Stack.Screen
+          name="WebviewScreen"
+          component={WebviewScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
