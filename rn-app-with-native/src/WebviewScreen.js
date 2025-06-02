@@ -18,6 +18,9 @@ export const WebviewScreen = () => {
                         service: 'website-test',
                         env: '${environment}',
                         version: '1.0.0',
+                        allowedTracingUrls: [
+                            { match: customMatch, propagatorTypes: ['tracecontext', 'datadog']}
+                        ],
                         sessionSampleRate: 100,
                         sessionReplaySampleRate: 100,
                         traceSampleRate: 100,
@@ -32,6 +35,10 @@ export const WebviewScreen = () => {
                     window.alert('failed to load ddrum', e)
                 }
             })
+        }
+
+        function customMatch(url) {
+            return url === 'http://10.0.2.2:4000/test'
         }
         
         var datadogSdk = document.createElement('script');

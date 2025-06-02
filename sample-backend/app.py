@@ -2,9 +2,14 @@ from opentelemetry import trace
 from random import randint
 import json
 from flask import Flask, request, Response
+from flask_cors import CORS
 
 app = Flask(__name__)
 tracer = trace.get_tracer(__name__)
+
+CORS(app, origins='*', allow_headers=[
+    'Content-Type', 'Authorization', 'X-Requested-With', 'x-datadog-*', 'traceparent', 'tracestate'
+])
 
 @app.route("/test")
 def roll():
@@ -26,7 +31,11 @@ def roll_sum(sides, rolls):
 
 @app.route("/test-cors")
 def test_cors():
-    response = Response("Hello, world!")
+    response = Response(json.dumps({
+        "response": "Hello, world!",
+        "headers": dict(request.headers)
+    }))
+    response.headers['Content-Type'] = 'application/json'
     return response
 
 if __name__ == "__main__":
