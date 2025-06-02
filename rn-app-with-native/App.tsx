@@ -30,7 +30,7 @@ datadogConfiguration.nativeCrashReportEnabled = true
 datadogConfiguration.sessionSamplingRate = 100
 datadogConfiguration.resourceTracingSamplingRate = 100
 datadogConfiguration.firstPartyHosts = [{
-  match: "172.26.32.1",
+  match: "10.0.2.2",
   propagatorTypes: [
     PropagatorType.TRACECONTEXT,
     PropagatorType.DATADOG

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TextInput, View, Text, Button} from 'react-native';
+import {TextInput, View, Text, Button, Platform} from 'react-native';
 import {
   blockJavascriptThread,
   blockNativeMainThread,
@@ -50,7 +50,9 @@ export const CompletionDetails = ({navigation}) => {
       <Button
         onPress={async () => {
           try {
-            const response = await fetch('http://172.26.32.1:8000/route?sides=6&rolls=3');
+            // Use 10.0.2.2 for Android emulator, localhost for iOS simulator
+            const baseUrl = Platform.OS === 'android' ? 'http://10.0.2.2:4000' : 'http://localhost:4000';
+            const response = await fetch(`${baseUrl}/test`);
             const json = await response.json();
             setApiResponse(json);
             setHeaders(response.headers);

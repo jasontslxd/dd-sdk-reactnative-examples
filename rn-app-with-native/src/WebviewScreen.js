@@ -18,9 +18,6 @@ export const WebviewScreen = () => {
                         service: 'website-test',
                         env: '${environment}',
                         version: '1.0.0',
-                        allowedTracingUrls: [
-                            { match: 'http://172.26.32.1:8000', propagatorTypes: ['tracecontext', 'datadog']}
-                        ],
                         sessionSampleRate: 100,
                         sessionReplaySampleRate: 100,
                         traceSampleRate: 100,
@@ -45,8 +42,8 @@ export const WebviewScreen = () => {
 
     return (
         <WebView 
-            source={{ uri: 'http://10.0.50.53:3000' }} 
-            allowedHosts={['10.0.50.53']}
+            source={{ uri: 'http://10.0.2.2:3000' }} 
+            allowedHosts={['10.0.2.2']}
             injectedJavaScriptBeforeContentLoaded={injectedJS}
         />
     )
