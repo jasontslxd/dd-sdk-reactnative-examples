@@ -23,7 +23,7 @@ class CustomViewModule(reactContext: ReactApplicationContext) : ReactContextBase
 
     @ReactMethod
     fun callApiFromNative(promise: Promise) {
-        val tracedHosts = listOf("172.26.32.1:8000")
+        val tracedHosts = listOf("10.0.2.2:4000")
 
         val client = OkHttpClient.Builder()
             .addInterceptor(
@@ -39,7 +39,7 @@ class CustomViewModule(reactContext: ReactApplicationContext) : ReactContextBase
             .build()
  
         val request = Request.Builder()
-            .url("http://172.26.32.1:8000/route?sides=10&rolls=1")
+            .url("http://10.0.2.2:4000/test")
             .build()
  
         Thread {
