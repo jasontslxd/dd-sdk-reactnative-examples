@@ -7,7 +7,7 @@ function App() {
 
   const onButtonCLick = async (endpoint) => {
     try {
-      const response = await fetch(`http://10.0.2.2:4000/${endpoint}`);
+      const response = await fetch(`http://10.0.2.2:8000/${endpoint}`);
       const json = await response.json();
       setApiResponse(JSON.stringify(json));
     } catch (error) {
@@ -22,8 +22,8 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Test website</h1>
         {apiResponse && <h3>api response: {apiResponse}</h3>}
-        <button onClick={() => onButtonCLick('test')}>Call api test</button>
-        <button onClick={() => onButtonCLick('test-cors')}>Call api test cors</button>
+        <button onClick={() => onButtonCLick('test')}>Call /test</button>
+        <button onClick={() => onButtonCLick('test-cors')}>Call /test-cors</button>
       </header>
     </div>
   );

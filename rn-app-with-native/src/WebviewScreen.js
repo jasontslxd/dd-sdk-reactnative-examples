@@ -38,7 +38,7 @@ export const WebviewScreen = () => {
         }
 
         function customMatch(url) {
-            return url === 'http://10.0.2.2:4000/test'
+            return url === 'http://10.0.2.2:8000/test'
         }
         
         var datadogSdk = document.createElement('script');

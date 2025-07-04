@@ -51,7 +51,7 @@ export const CompletionDetails = ({navigation}) => {
         onPress={async () => {
           try {
             // Use 10.0.2.2 for Android emulator, localhost for iOS simulator
-            const baseUrl = Platform.OS === 'android' ? 'http://10.0.2.2:4000' : 'http://localhost:4000';
+            const baseUrl = Platform.OS === 'android' ? 'http://10.0.2.2:8000' : 'http://localhost:8000';
             const response = await fetch(`${baseUrl}/test`);
             const json = await response.json();
             setApiResponse(json);
