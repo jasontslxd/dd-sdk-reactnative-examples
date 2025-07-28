@@ -8,15 +8,14 @@ import { datadogRum } from '@datadog/browser-rum';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 datadogRum.init({
-  applicationId: 'ed9e8110-77f9-47d5-9e28-f3b4d54498ce',
-  clientToken: 'pub06a01489e254a4c616661526e1017d34',
-  site: 'datadoghq.com',
-  service:'header_test',
-  env: 'dev',
+  applicationId: process.env.REACT_APP_DATADOG_APPLICATION_ID,
+  clientToken: process.env.REACT_APP_DATADOG_CLIENT_TOKEN,
+  site: process.env.REACT_APP_DATADOG_SITE,
+  service: process.env.REACT_APP_DATADOG_SERVICE,
+  env: process.env.REACT_APP_DATADOG_ENV,
   
   // Specify a version number to identify the deployed version of your application in Datadog
   // version: '1.0.0',
-  site: 'datadoghq.com',
   allowedTracingUrls: [
     "http://localhost:3000",
     "http://localhost:4000",
