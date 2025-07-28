@@ -1,9 +1,8 @@
-FROM python:3.11-slim
+FROM python:3.11
 WORKDIR /app
 
 COPY requirements.txt ./
 RUN pip install -r ./requirements.txt
-RUN opentelemetry-bootstrap -a install
 COPY . .
 
 EXPOSE 4000
